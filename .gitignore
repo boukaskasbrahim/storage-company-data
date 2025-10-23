@@ -28,3 +28,11 @@ env/
 # ---- VS Code ----
 .vscode/
 *.code-workspace
+
+
+venv/
+__pycache__/
+*.db
+*.sqlite
+.DS_Store
+.ipynb_checkpoints/
