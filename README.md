@@ -37,27 +37,37 @@ In VS Code, I created several SQL scripts to handle transformations, normalizati
 
 ## Project Structure  
 
+storage-company-data/
+│
+├── Data/
+│   ├── raw/                      # Original raw CSVs
+│   ├── cleaned/                  # Cleaned data exported from Python
+│   │   ├── customers_clean.csv
+│   │   ├── payments_clean.csv
+│   │   ├── visits_clean.csv
+│   │   └── units_clean.csv
+│   ├── storage_company.db        # Final SQLite database
+│   └── DATA_DESCRIPTION.txt      # Raw data details and cleaning notes
+│
+├── notebooks/
+│   ├── 01_exploration.ipynb           # Initial data exploration in Python
+│   ├── 02_cleaning_pipeline.ipynb     # Python cleaning workflow (pandas)
+│   ├── 03_database_build.ipynb        # Database creation and export
+│   ├── 04_modeling.ipynb              # Data modeling / integration
+│   └── sql_cleaning/
+│       ├── 01_customers_cleaning.sql
+│       ├── 02_payments_cleaning.sql
+│       ├── 03_units_cleaning.sql
+│       ├── 04_visits_cleaning.sql
+│       ├── 05_merge_master.sql
+│       ├── 06_standardize_text_fields.sql
+│       ├── 07_standardize_phone_numbers.sql
+│       └── 08_fix_date_formats.sql
+│
+├── requirements.txt
+├── .gitignore
+└── README.md
 
-
-Data/
-├── raw/ # Original raw CSVs
-├── cleaned/ # Cleaned data exported from Python
-└── storage_company.db # Final SQLite database
-
-notebooks/
-├── 01_exploration.ipynb # Initial data exploration
-├── 02_cleaning_pipeline.ipynb # Python cleaning steps
-├── 03_database_build.ipynb # Database creation
-├── 04_modeling.ipynb # Analysis preparation
-└── sql_cleaning/ # SQL-based cleaning scripts
-├── 01_customers_cleaning.sql
-├── 02_payments_cleaning.sql
-├── 03_units_cleaning.sql
-├── 04_visits_cleaning.sql
-├── 05_merge_master.sql
-├── 06_standardize_text_fields.sql
-├── 07_standardize_phone_numbers.sql
-└── 08_fix_date_formats.sql
 
 
 ---
