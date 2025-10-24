@@ -13,10 +13,10 @@ SELECT
     customer_id,
     LOWER(TRIM(unit_id)) AS unit_id,
 
-    -- normalize visit date format
+    -- normalizing visit date format
     DATE(visited_at) AS visited_at,
 
-    -- clean purpose text
+    -- cleaning purpose text
     LOWER(TRIM(purpose)) AS purpose
 FROM visits;
 

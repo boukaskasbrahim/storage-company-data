@@ -1,11 +1,9 @@
 /* ==============================================================
 07_standardize_phone_numbers.sql
-Purpose: Clean and standardize phone number formats in master_dataset
-Author: Brahim Boukaskas
-Date: CURRENT_DATE
+Purpose: Cleaning and standardizing phone number formats in master_dataset
 ============================================================== */
 
--- 1. Remove invalid placeholders and obvious fake values
+-- 1. Removing invalid placeholders and obvious fake values
 UPDATE master_dataset
 SET phone = NULL
 WHERE phone LIKE 'PHONE%'
@@ -15,12 +13,12 @@ WHERE phone LIKE 'PHONE%'
    OR phone IS NULL
    OR TRIM(phone) = '';
 
--- 2. Remove spaces, hyphens, and parentheses for normalization
+-- 2. Removing spaces, hyphens, and parentheses for normalization
 UPDATE master_dataset
 SET phone = REPLACE(REPLACE(REPLACE(REPLACE(phone, ' ', ''), '-', ''), '(', ''), ')', '')
 WHERE phone IS NOT NULL;
 
--- 3. Normalize international Dutch numbers:
+-- 3. Normalizing international Dutch numbers:
 -- +31 or 0031 → 0
 UPDATE master_dataset
 SET phone = CASE
@@ -30,14 +28,14 @@ SET phone = CASE
 END
 WHERE phone IS NOT NULL;
 
--- 4. Keep only valid-looking Dutch numbers (10 digits starting with 0)
+-- 4. Keeping only valid-looking Dutch numbers (10 digits starting with 0)
 UPDATE master_dataset
 SET phone = NULL
 WHERE LENGTH(phone) < 10
    OR LENGTH(phone) > 11
    OR phone NOT GLOB '0*';
 
--- 5. Optional: format consistently as 06-xxxx-xxxx (Dutch mobile style)
+-- 5. formating consistently as 06-xxxx-xxxx (Dutch mobile style)
 UPDATE master_dataset
 SET phone = SUBSTR(phone, 1, 2) || '-' ||
             SUBSTR(phone, 3, 4) || '-' ||

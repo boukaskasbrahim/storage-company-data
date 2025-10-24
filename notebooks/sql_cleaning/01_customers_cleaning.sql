@@ -1,7 +1,7 @@
--- Drop old version if it exists
+-- Droping old version if it exists
 DROP TABLE IF EXISTS customers_clean;
 
--- Create cleaned version
+-- Creating cleaned version
 CREATE TABLE customers_clean AS
 SELECT
     customer_id,
@@ -34,7 +34,7 @@ SELECT
     TRIM(last_name) AS last_name,
     LOWER(TRIM(email)) AS email,
 
-    -- normalize phone numbers
+    -- normalizing phone numbers
     REPLACE(REPLACE(REPLACE(phone, ' ', ''), '-', ''), 'ext', '') AS phone,
 
     TRIM(street_address) AS street_address,
@@ -55,7 +55,7 @@ SELECT
 
     LOWER(REPLACE(unit_id, '#', '')) AS unit_id,
 
-    -- remove sqm/m2 text and cast to number
+    -- removing sqm/m2 text and cast to number
     CAST(
         REPLACE(
             REPLACE(
@@ -66,7 +66,7 @@ SELECT
         ) AS FLOAT
     ) AS unit_size,
 
-    -- fix: correct column name here
+    -- fixing: correcting column name here
     CAST(monthly_fee AS FLOAT) AS monthly_fee,
 
     LOWER(payment_status) AS payment_status,

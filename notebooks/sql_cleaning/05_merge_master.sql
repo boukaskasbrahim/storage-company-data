@@ -1,6 +1,6 @@
 -- =======================================================
 -- 05_merge_master.sql
--- Combine all cleaned tables into one unified dataset
+-- Combining all cleaned tables into one unified dataset
 -- =======================================================
 
 DROP TABLE IF EXISTS master_dataset;

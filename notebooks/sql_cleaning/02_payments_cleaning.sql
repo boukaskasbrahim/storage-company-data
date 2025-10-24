@@ -12,13 +12,13 @@ SELECT
     transaction_id,
     customer_id,
 
-    -- convert date text to ISO date
+    -- converting date text to ISO date
     DATE(date) AS payment_date,
 
-    -- convert text to float for numeric analysis
+    -- converting text to float for numeric analysis
     CAST(amount AS FLOAT) AS amount,
 
-    -- clean and normalize text columns
+    -- cleaning and normalizing text columns
     LOWER(TRIM(method)) AS method,
     LOWER(TRIM(status)) AS status,
     TRIM(note) AS note

@@ -1,11 +1,9 @@
 /* ==============================================================
 06_standardize_text_fields.sql
-Purpose: Clean and normalize text fields in master_dataset
-Author: Brahim Boukaskas
-Date: CURRENT_DATE
+Purpose: Cleaning and normalizing text fields in master_dataset
 ============================================================== */
 
--- Fix city typos and normalize capitalization
+-- Fixing city typos and normalizing capitalization
 UPDATE master_dataset
 SET city = CASE
     WHEN LOWER(city) LIKE 'amstelvveen%' THEN 'Amstelveen'
@@ -20,19 +18,19 @@ SET city = CASE
     ELSE city
 END;
 
--- Capitalize first letter of each city (for consistency)
+-- Capitalizing first letter of each city (for consistency)
 UPDATE master_dataset
 SET city = UPPER(SUBSTR(city, 1, 1)) || LOWER(SUBSTR(city, 2))
 WHERE city IS NOT NULL AND city != '';
 
--- Standardize country names and remove abbreviations
+-- Standardizing country names and removing abbreviations
 UPDATE master_dataset
 SET country = CASE
     WHEN LOWER(country) IN ('nl', 'ned', 'nederland', 'netherland') THEN 'Netherlands'
     ELSE country
 END;
 
--- Trim potential extra spaces
+-- Triming potential extra spaces
 UPDATE master_dataset
 SET city = TRIM(city),
     country = TRIM(country);
@@ -45,12 +43,10 @@ ORDER BY city;
 
 /* ==============================================================
 06_standardize_text_fields.sql
-Purpose: Correct city and country text inconsistencies in master_dataset
-Author: Brahim Boukaskas
-Date: CURRENT_DATE
+Purpose: Correcting city and country text inconsistencies in master_dataset
 ============================================================== */
 
--- Fix city names and common misspellings
+-- Fixing city names and common misspellings
 UPDATE master_dataset
 SET city = CASE
     WHEN LOWER(city) IN (
@@ -96,19 +92,19 @@ SET city = CASE
     ELSE city
 END;
 
--- Normalize capitalization
+-- Normalizing capitalization
 UPDATE master_dataset
 SET city = UPPER(SUBSTR(city, 1, 1)) || LOWER(SUBSTR(city, 2))
 WHERE city IS NOT NULL AND city != '';
 
--- Standardize country variations
+-- Standardizing country variations
 UPDATE master_dataset
 SET country = CASE
     WHEN LOWER(country) IN ('nl', 'ned', 'nederland', 'netherland') THEN 'Netherlands'
     ELSE country
 END;
 
--- Remove extra spaces and invisible characters
+-- Removing extra spaces and invisible characters
 UPDATE master_dataset
 SET city = TRIM(REPLACE(REPLACE(city, '  ', ' '), '�', '')),
     country = TRIM(REPLACE(REPLACE(country, '  ', ' '), '�', ''));

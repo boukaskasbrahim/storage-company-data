@@ -114,3 +114,7 @@ All data is now consistent, queryable, and ready for reporting or dashboard visu
 
 My name is **Brahim Boukaskas**, and I am a junior data analyst passionate about transforming data into useful insights.  
 Through this project, I practiced a complete end-to-end cleaning workflow, from Python exploration to SQL-based structuring, following the same process used in professional data environments.  
+
+
+For detailed information about the raw datasets and their issues, see  
+[`Data/DATA_DESCRIPTION.txt`](./Data/DATA_DESCRIPTION.txt)
