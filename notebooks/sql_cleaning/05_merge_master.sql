@@ -132,3 +132,4 @@ SELECT DISTINCT lease_end
 FROM master_dataset
 WHERE lease_end NOT IN ('active', 'indefinite')
 ORDER BY lease_end;
+
