@@ -36,7 +36,7 @@ In VS Code, I created several SQL scripts to handle transformations, normalizati
 ---
 
 ## Project Structure  
-"bash"
+```bash
 
 storage-company-data/
 │
@@ -69,7 +69,7 @@ storage-company-data/
 ├── .gitignore
 └── README.md
 
-
+```
 
 ---
 
